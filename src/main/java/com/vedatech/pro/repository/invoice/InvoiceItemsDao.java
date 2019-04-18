@@ -12,7 +12,8 @@ public interface InvoiceItemsDao extends CrudRepository<InvoiceItems, Long> {
  @Query("SELECT d.claveUnidad, d.descripcion, SUM(d.cantidad), sum(d.importe) FROM InvoiceItems d GROUP BY d.claveUnidad")
  List<Object[]> getData();
 
-    @Query("SELECT d.claveUnidad as claveUnidad, d.descripcion as descripcion, SUM(d.cantidad) as cantidad, sum(d.importe) as importe FROM InvoiceItems d GROUP BY d.claveUnidad")
+    @Query("SELECT d.claveUnidad as claveUnidad, d.descripcion as descripcion, SUM(d.cantidad) as cantidad, sum(d.importe) as importe," +
+            "avg (d.valorUnitario) as avgValue  FROM InvoiceItems d GROUP BY d.claveUnidad")
     List<SalesByProduct> getDataSales();
 
 }

@@ -12,4 +12,5 @@ public interface SalesByProduct {
     String getDescripcion();
     BigDecimal getCantidad();
     BigDecimal getImporte();
+    BigDecimal getAvgValue();
 }

@@ -176,8 +176,10 @@ public class CfdiServiceImp implements CfdiService {
 
       public List<InvoiceItems> getConceptos(Comprobante comprobante){
 
+        GregorianCalendar gregorianCalendar = comprobante.getFecha().toGregorianCalendar();
         List<Comprobante.Conceptos.Concepto> conceptos = comprobante.getConceptos().getConcepto();
         List<InvoiceItems> itemsList = new ArrayList<>();
+
         for (Comprobante.Conceptos.Concepto c: conceptos) {
             InvoiceItems invoiceItems = new InvoiceItems();
             System.out.println("Descripcion " + c.getDescripcion() + " Num Identificacion " + c.getNoIdentificacion());
@@ -188,6 +190,7 @@ public class CfdiServiceImp implements CfdiService {
             invoiceItems.setImporte(c.getImporte());
             invoiceItems.setValorUnitario(c.getValorUnitario());
             invoiceItems.setUnidad(c.getUnidad());
+            invoiceItems.setFecha(gregorianCalendar);
             itemsList.add(invoiceItems);
         }
 
