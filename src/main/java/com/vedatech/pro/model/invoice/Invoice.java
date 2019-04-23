@@ -28,6 +28,8 @@ public class Invoice extends BaseEntity {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private GregorianCalendar fecha;
     private GregorianCalendar fechaPago;
+    private String customerName;
+    private String storeNum;
     private String condicionesDePago;
     private BigDecimal subTotal;
     private BigDecimal impuesto;

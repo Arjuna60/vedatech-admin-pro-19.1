@@ -127,6 +127,10 @@ public class CfdiServiceImp implements CfdiService {
         invoice.setTotal(comprobante.getTotal());
 //        getConceptos(comprobante);
         invoice.setInvoiceItems(getConceptos(comprobante));
+        invoice.setCustomerName(comprobante.getReceptor().getNombre());
+        if( existBranch(comprobante) ){
+            invoice.setStoreNum( comprobante.getAddenda().getFacturaInterfactura().getEncabezado().getNumSucursal());
+        }
         Invoice invoiceSaved = invoiceDao.save(invoice);
         calculateBalance(invoiceSaved);
         stadisticVolumeProducts();
@@ -200,7 +204,7 @@ public class CfdiServiceImp implements CfdiService {
         public void stadisticVolumeProducts () {
 
             List<Object[]> results = invoiceItemsDao.getData();
-            List<SalesByProduct> salesByProductList = invoiceItemsDao.getDataSales();
+//            List<SalesByProduct> salesByProductList = invoiceItemsDao.getDataSales();
 
             for (int i = 0; i < results.size(); i++) {
                 Object[] arr = results.get(i);
@@ -210,9 +214,9 @@ public class CfdiServiceImp implements CfdiService {
                 System.out.println();
             }
 
-            for ( SalesByProduct s: salesByProductList ) {
-                System.out.println("Sales by Product " + s.getDescripcion() + "  " + s.getCantidad());
-            }
+//            for ( SalesByProduct s: salesByProductList ) {
+//                System.out.println("Sales by Product " + s.getDescripcion() + "  " + s.getCantidad());
+//            }
 
 
         }
