@@ -26,8 +26,13 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
+
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
+import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 
 @Controller
 @RequestMapping("/api/customer")
@@ -209,7 +214,16 @@ public class CustomerInvoiceController {
     public ResponseEntity<List<Invoice>> getAllInvoiceByCustomer(@PathVariable (value = "id") Long id) {
 
         Customer customer = new Customer();
-        List<Invoice> invoiceList = (List<Invoice>) invoiceDao.findAllByCustomerId(id);
+        LocalDate now = LocalDate.now(); // 2015-11-23
+        LocalDate firstDay = now.with(firstDayOfYear()); // 2015-01-01
+        LocalDate lastDay = now.with(lastDayOfYear()); // 2015-12-31
+        GregorianCalendar gc = GregorianCalendar.from(firstDay.atStartOfDay(ZoneId.systemDefault()));
+
+        System.out.println("LOCAL DATES: FIRST DAY " + firstDay + " LAST DAY " + lastDay);
+
+
+//        List<Invoice> invoiceList = (List<Invoice>) invoiceDao.findAllByCustomerId(id);
+        List<Invoice> invoiceList = (List<Invoice>) invoiceDao.findAllByCustomer_IdAndFechaGreaterThan(id, gc);
         if (invoiceList.isEmpty()) {
             headers.set("error", "no existen movimientos a la cuentas del Cliente");
             return new ResponseEntity<List<Invoice>>(headers, HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND

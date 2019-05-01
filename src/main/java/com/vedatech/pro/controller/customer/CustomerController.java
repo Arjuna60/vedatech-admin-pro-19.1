@@ -97,7 +97,7 @@ public class CustomerController {
         List<Customer> customers =  customerService.findAll();
 
         if (customers.isEmpty()) {
-            headers.set("error", "no existen cuentas bancarias");
+            headers.set("error", "no existen cuentas bancarias favor de revisar");
             return new ResponseEntity<List<Customer>>(headers, HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
 

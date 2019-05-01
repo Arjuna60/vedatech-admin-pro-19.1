@@ -111,7 +111,7 @@ public class SubAccountController {
 
     //-------------------Retrieve All Sub-Accounts--------------------------------------------------------
 
-    @RequestMapping(value = "/getAllSubAccounts/", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAllSubAccount", method = RequestMethod.GET)
     public ResponseEntity<List<SubAccount>> getAllSubAcc() {
         HttpHeaders headers = new HttpHeaders();
         List<SubAccount> accountNames = (List<SubAccount>) subAccountService.findAll();

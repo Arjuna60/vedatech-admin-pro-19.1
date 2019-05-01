@@ -2,6 +2,7 @@ package com.vedatech.pro.model.invoice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vedatech.pro.model.BaseEntity;
+import com.vedatech.pro.model.bank.BankTransaction;
 import com.vedatech.pro.model.contabilidad.Poliza;
 import com.vedatech.pro.model.customer.Customer;
 import com.vedatech.pro.model.product.Product;
@@ -59,5 +60,11 @@ public class Invoice extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "invoices_id")
     private List<Poliza> polizas;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "banktrans_invoices",
+    joinColumns = @JoinColumn(name = "invoice_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "banktrans_id", referencedColumnName = "id"))
+    private List<BankTransaction> bankTransactionList;
 
 }

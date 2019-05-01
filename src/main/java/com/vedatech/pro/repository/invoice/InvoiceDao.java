@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.math.BigDecimal;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public interface InvoiceDao extends CrudRepository<Invoice, Long> {
@@ -33,5 +34,7 @@ public interface InvoiceDao extends CrudRepository<Invoice, Long> {
     public List<Invoice> findAllByPolizas_Empty();
 
     public List<Invoice> findAllByPolizas_EmptyAndCustomerId(Long id);
+
+    List<Invoice> findAllByCustomer_IdAndFechaGreaterThan(Long id, GregorianCalendar date);
 
 }

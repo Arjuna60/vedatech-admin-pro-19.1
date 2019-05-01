@@ -40,7 +40,7 @@ public class BankController {
 
     //-------------------Create a Bank Account--------------------------------------------------------
 
-    @RequestMapping(value = "/addBankAccount/", method = RequestMethod.POST)
+    @RequestMapping(value = "/addBankAccount", method = RequestMethod.POST)
     public ResponseEntity<String> createUser(@RequestBody Bank bank, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating User ");
 
@@ -120,7 +120,7 @@ public class BankController {
 
     //-------------------Retrieve All Bank Accounts--------------------------------------------------------
 
-    @RequestMapping(value = "/getAllBankAccounts/", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAllBankAccounts", method = RequestMethod.GET)
     public ResponseEntity<List<Bank>> listAllUsers() {
         HttpHeaders headers = new HttpHeaders();
         List<Bank> bankAccounts = bankService.findAll();

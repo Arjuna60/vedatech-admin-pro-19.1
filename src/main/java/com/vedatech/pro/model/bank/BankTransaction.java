@@ -64,8 +64,8 @@ public class BankTransaction extends BaseEntity {
     @JoinColumn(name = "poliza_id")
     private List<AccountPolicy> poliza;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "invoices_id")
+    @ManyToMany(mappedBy = "bankTransactionList")
+//  @JoinColumn(name = "invoices_id")
     private List<Invoice> invoices;
 
 
