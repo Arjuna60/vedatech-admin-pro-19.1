@@ -137,12 +137,12 @@ public class InvoiceController {
 
 
             if (!cfdiService.existSupplier(unmarshalComprobante)) {
-//                invoice.setSupplier(cfdiService.saveSupplier(unmarshalComprobante));
-//                cfdiService.fillInvoice(invoice, unmarshalComprobante);
+                invoice.setSupplier(cfdiService.saveSupplier(unmarshalComprobante));
+                cfdiService.fillInvoice(invoice, unmarshalComprobante);
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 
             } else {
-                invoice.setSupplier(supplierDao.findBySupplierRfc(unmarshalComprobante.getEmisor().getRfc()));
+                invoice.setSupplier(cfdiService.saveSupplier(unmarshalComprobante));
                 cfdiService.fillInvoice(invoice, unmarshalComprobante);
             }
 

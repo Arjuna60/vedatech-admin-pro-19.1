@@ -49,7 +49,7 @@ public class BankController {
         System.out.println("Exist Bank? " + bankDao.existsBanksBySubAccount_AccountNumber(subAccount2.getAccountNumber()));
 
             /*Verifica si existe un numero de cuenta con el mismo numero*/
-        if (bankDao.findBankByAccountNumber(bank.getAccountNumber()) != null ||  bankDao.existsBanksBySubAccount_AccountNumber(subAccount2.getAccountNumber())) {
+        if ( bankDao.existsBanksBySubAccount_AccountNumber(subAccount2.getAccountNumber())) {
             System.out.println("A User with name " + bank.getNameBank() + " " + bank.getAccountNumber() + " already exist");
             HttpHeaders headers = new HttpHeaders();
             headers.set("error ", "bank account or Number Account already exist please verfiy");

@@ -52,7 +52,7 @@ public class SupplierInvoiceController {
     }
 
     //-------------------Received Xml Customer File--------------------------------------------------------
-    @RequestMapping(value = "/send-xml-file", consumes = MediaType.APPLICATION_XML_VALUE)
+    @RequestMapping(value = "/supplier-xml-file", consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Supplier> getXmlInvoice(@RequestBody String comprobante) throws IOException {
 
         HttpStatus status = HttpStatus.OK;

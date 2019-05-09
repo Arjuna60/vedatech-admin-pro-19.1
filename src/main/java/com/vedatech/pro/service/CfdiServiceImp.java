@@ -132,8 +132,8 @@ public class CfdiServiceImp implements CfdiService {
             invoice.setStoreNum( comprobante.getAddenda().getFacturaInterfactura().getEncabezado().getNumSucursal());
         }
         Invoice invoiceSaved = invoiceDao.save(invoice);
-        calculateBalance(invoiceSaved);
-        stadisticVolumeProducts();
+//        calculateBalance(invoiceSaved);
+//        stadisticVolumeProducts();
 
     }
 
